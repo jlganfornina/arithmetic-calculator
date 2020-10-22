@@ -55,4 +55,20 @@ class ArithmeticCalculatorSubtractServiceImplTest {
         // then
         assertThat(result).isEqualTo(expectedResult);
     }
+
+    @Test
+    void shouldSubtractTwoRandomNumbers() {
+        // given
+        final BigDecimal firstTerm = new BigDecimal(String.valueOf(Math.random()));
+        final BigDecimal secondTerm = new BigDecimal(String.valueOf(Math.random()));
+        final BigDecimal expectedResult = firstTerm.subtract(secondTerm);
+
+        final ArithmeticCalculatorSubtractService arithmeticCalculatorService = new ArithmeticCalculatorSubtractServiceImpl();
+
+        // when
+        final BigDecimal result = arithmeticCalculatorService.subtract(firstTerm, secondTerm);
+
+        // then
+        assertThat(result).isEqualTo(expectedResult);
+    }
 }
