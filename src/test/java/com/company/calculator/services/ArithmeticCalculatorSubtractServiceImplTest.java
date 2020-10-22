@@ -39,4 +39,20 @@ class ArithmeticCalculatorSubtractServiceImplTest {
         // then
         assertThat(result).isEqualTo(expectedResult);
     }
+
+    @Test
+    void shouldSubtractTwoNumbersWithLargeNumberOfDecimals() {
+        // given
+        final BigDecimal firstTerm = new BigDecimal("657867845.23498437534985673459857349857239845767854764587364387563487534698756349857348957345765498252");
+        final BigDecimal secondTerm = new BigDecimal("49695.76785476458736438756348753469875634985734895734576549825223498437534985673459857349857239845");
+        final BigDecimal expectedResult = new BigDecimal("657818149.46712961076249234703508596387364210782119868852787837738264036261221364183889099995908258407");
+
+        final ArithmeticCalculatorSubtractService arithmeticCalculatorService = new ArithmeticCalculatorSubtractServiceImpl();
+
+        // when
+        final BigDecimal result = arithmeticCalculatorService.subtract(firstTerm, secondTerm);
+
+        // then
+        assertThat(result).isEqualTo(expectedResult);
+    }
 }
