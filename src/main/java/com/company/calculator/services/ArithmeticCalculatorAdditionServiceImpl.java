@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 @Service
-public class ArithmeticCalculatorServiceImpl implements ArithmeticCalculatorService {
+public class ArithmeticCalculatorAdditionServiceImpl implements ArithmeticCalculatorAdditionService {
 
     @Override
     public BigDecimal addition(final BigDecimal firstTerm,

@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-class ArithmeticCalculatorServiceImplTest {
+class ArithmeticCalculatorAdditionServiceImplTest {
 
     @Test
     void shouldAddTwoNumbersWithoutDecimals() {
@@ -17,7 +17,7 @@ class ArithmeticCalculatorServiceImplTest {
         final BigDecimal secondTerm = new BigDecimal("45");
         final BigDecimal expectedResult = new BigDecimal("5712");
 
-        final ArithmeticCalculatorServiceImpl arithmeticCalculatorService = new ArithmeticCalculatorServiceImpl();
+        final ArithmeticCalculatorAdditionService arithmeticCalculatorService = new ArithmeticCalculatorAdditionServiceImpl();
 
         // when
         final BigDecimal result = arithmeticCalculatorService.addition(firstTerm, secondTerm);
@@ -33,7 +33,7 @@ class ArithmeticCalculatorServiceImplTest {
         final BigDecimal secondTerm = new BigDecimal("45.7676");
         final BigDecimal expectedResult = new BigDecimal("5713.2221");
 
-        final ArithmeticCalculatorServiceImpl arithmeticCalculatorService = new ArithmeticCalculatorServiceImpl();
+        final ArithmeticCalculatorAdditionService arithmeticCalculatorService = new ArithmeticCalculatorAdditionServiceImpl();
 
         // when
         final BigDecimal result = arithmeticCalculatorService.addition(firstTerm, secondTerm);
@@ -49,7 +49,7 @@ class ArithmeticCalculatorServiceImplTest {
         final BigDecimal secondTerm = new BigDecimal("49695.76785476458736438756348753469875634985734895734576549825223498437534985673459857349857239845");
         final BigDecimal expectedResult = new BigDecimal("657917541.00283913993722112216206103327115480753589660321940937388711033136291335530808814695622738097");
 
-        final ArithmeticCalculatorServiceImpl arithmeticCalculatorService = new ArithmeticCalculatorServiceImpl();
+        final ArithmeticCalculatorAdditionService arithmeticCalculatorService = new ArithmeticCalculatorAdditionServiceImpl();
 
         // when
         final BigDecimal result = arithmeticCalculatorService.addition(firstTerm, secondTerm);
@@ -65,7 +65,7 @@ class ArithmeticCalculatorServiceImplTest {
         final BigDecimal secondTerm = new BigDecimal(String.valueOf(Math.random()));
         final BigDecimal expectedResult = firstTerm.add(secondTerm);
 
-        final ArithmeticCalculatorServiceImpl arithmeticCalculatorService = new ArithmeticCalculatorServiceImpl();
+        final ArithmeticCalculatorAdditionService arithmeticCalculatorService = new ArithmeticCalculatorAdditionServiceImpl();
 
         // when
         final BigDecimal result = arithmeticCalculatorService.addition(firstTerm, secondTerm);
@@ -81,7 +81,7 @@ class ArithmeticCalculatorServiceImplTest {
         final BigDecimal secondTerm = new BigDecimal("1.00000000000000000000000000000001");
         final BigDecimal expectedResult = new BigDecimal("3.00000000000000000000000000000000");
 
-        final ArithmeticCalculatorServiceImpl arithmeticCalculatorService = new ArithmeticCalculatorServiceImpl();
+        final ArithmeticCalculatorAdditionService arithmeticCalculatorService = new ArithmeticCalculatorAdditionServiceImpl();
 
         // when
         final BigDecimal result = arithmeticCalculatorService.addition(firstTerm, secondTerm);
@@ -96,7 +96,7 @@ class ArithmeticCalculatorServiceImplTest {
         final BigDecimal firstTerm = null;
         final BigDecimal secondTerm = new BigDecimal(String.valueOf(Math.random()));
 
-        final ArithmeticCalculatorServiceImpl arithmeticCalculatorService = new ArithmeticCalculatorServiceImpl();
+        final ArithmeticCalculatorAdditionService arithmeticCalculatorService = new ArithmeticCalculatorAdditionServiceImpl();
 
         // when
         // then
@@ -111,7 +111,7 @@ class ArithmeticCalculatorServiceImplTest {
         final BigDecimal firstTerm = new BigDecimal(String.valueOf(Math.random()));
         final BigDecimal secondTerm = null;
 
-        final ArithmeticCalculatorServiceImpl arithmeticCalculatorService = new ArithmeticCalculatorServiceImpl();
+        final ArithmeticCalculatorAdditionService arithmeticCalculatorService = new ArithmeticCalculatorAdditionServiceImpl();
 
         // when
         // then

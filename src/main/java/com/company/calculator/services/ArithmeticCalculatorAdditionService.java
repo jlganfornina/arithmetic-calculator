@@ -2,7 +2,7 @@ package com.company.calculator.services;
 
 import java.math.BigDecimal;
 
-public interface ArithmeticCalculatorService {
+public interface ArithmeticCalculatorAdditionService {
     /**
      * Devuelve un número cuyo valor es {@code firstTerm + secondTerm}
      *
