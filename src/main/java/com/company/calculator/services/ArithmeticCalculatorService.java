@@ -1,6 +1,6 @@
 package com.company.calculator.services;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 
 public interface ArithmeticCalculatorService {
     /**
@@ -10,6 +10,6 @@ public interface ArithmeticCalculatorService {
      * @param secondTerm segundo número para realizar la suma
      * @return {@code firstTerm + secondTerm}
      */
-    BigInteger addition(BigInteger firstTerm,
-                        BigInteger secondTerm);
+    BigDecimal addition(BigDecimal firstTerm,
+                        BigDecimal secondTerm);
 }
