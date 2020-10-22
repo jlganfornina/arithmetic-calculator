@@ -55,4 +55,32 @@ class ArithmeticOperationsControllerTest {
         assertThat(result).isEqualTo(expectedResult.toString());
         verify(arithmeticCalculatorService, only()).executeOperation(firstTerm, secondTerm, arithmeticOperationType);
     }
+
+    @Test
+    void shouldExecuteSubtractOperation() throws Exception {
+        // given
+        final BigDecimal firstTerm = BigDecimal.valueOf(Math.random());
+        final BigDecimal secondTerm = BigDecimal.valueOf(Math.random());
+        final ArithmeticOperationType arithmeticOperationType = ArithmeticOperationType.SUBTRACT;
+        final BigDecimal expectedResult = firstTerm.add(secondTerm);
+        when(arithmeticCalculatorService.executeOperation(firstTerm, secondTerm, arithmeticOperationType)).thenReturn(expectedResult);
+
+        // when
+        final ResultMatcher resultMatcher = status().isOk();
+        final MockHttpServletRequestBuilder additionRequest = MockMvcRequestBuilders.get("/api/executeOperation")
+                .param("firstTerm", firstTerm.toString())
+                .param("secondTerm", secondTerm.toString())
+                .param("arithmeticOperationType", arithmeticOperationType.toString())
+                .accept(MediaType.APPLICATION_JSON);
+
+        final String result = mockMvc.perform(additionRequest)
+                .andExpect(resultMatcher)
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        // then
+        assertThat(result).isEqualTo(expectedResult.toString());
+        verify(arithmeticCalculatorService, only()).executeOperation(firstTerm, secondTerm, arithmeticOperationType);
+    }
 }
