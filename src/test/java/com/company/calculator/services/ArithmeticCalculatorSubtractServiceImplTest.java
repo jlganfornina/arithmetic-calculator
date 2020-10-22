@@ -87,4 +87,20 @@ class ArithmeticCalculatorSubtractServiceImplTest {
         // then
         assertThat(result).isEqualTo(expectedResult);
     }
+
+    @Test
+    void shouldSubtractTwoNegativeNumbers() {
+        // given
+        final BigDecimal firstTerm = new BigDecimal("-11.234234");
+        final BigDecimal secondTerm = new BigDecimal("-23.3434345");
+        final BigDecimal expectedResult = new BigDecimal("12.1092005");
+
+        final ArithmeticCalculatorSubtractService arithmeticCalculatorService = new ArithmeticCalculatorSubtractServiceImpl();
+
+        // when
+        final BigDecimal result = arithmeticCalculatorService.subtract(firstTerm, secondTerm);
+
+        // then
+        assertThat(result).isEqualTo(expectedResult);
+    }
 }
