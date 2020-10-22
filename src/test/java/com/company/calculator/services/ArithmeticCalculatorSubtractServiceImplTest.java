@@ -120,4 +120,19 @@ class ArithmeticCalculatorSubtractServiceImplTest {
                 .isExactlyInstanceOf(InvalidTermException.class)
                 .hasMessageContaining(InvalidTermException.FIRST_TERM_IS_NULL);
     }
+
+    @Test
+    void shoudGetInvalidTermsExceptionWhenSecondTermIsNull() {
+        // given
+        final BigDecimal firstTerm = new BigDecimal(String.valueOf(Math.random()));
+        final BigDecimal secondTerm = null;
+
+        final ArithmeticCalculatorSubtractService arithmeticCalculatorService = new ArithmeticCalculatorSubtractServiceImpl();
+
+        // when
+        // then
+        assertThatCode(() -> arithmeticCalculatorService.subtract(firstTerm, secondTerm))
+                .isExactlyInstanceOf(InvalidTermException.class)
+                .hasMessageContaining(InvalidTermException.SECOND_TERM_IS_NULL);
+    }
 }

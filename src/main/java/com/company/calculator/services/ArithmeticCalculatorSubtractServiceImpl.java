@@ -9,10 +9,16 @@ public class ArithmeticCalculatorSubtractServiceImpl implements ArithmeticCalcul
     @Override
     public BigDecimal subtract(final BigDecimal firstTerm,
                                final BigDecimal secondTerm) {
-        if (Objects.isNull(firstTerm)) {
-            throw new InvalidTermException(InvalidTermException.FIRST_TERM_IS_NULL);
-        }
+        validateTerm(firstTerm, InvalidTermException.FIRST_TERM_IS_NULL);
+        validateTerm(secondTerm, InvalidTermException.SECOND_TERM_IS_NULL);
 
         return firstTerm.subtract(secondTerm);
+    }
+
+    private void validateTerm(final BigDecimal term,
+                              final String messageIfError) {
+        if (Objects.isNull(term)) {
+            throw new InvalidTermException(messageIfError);
+        }
     }
 }
