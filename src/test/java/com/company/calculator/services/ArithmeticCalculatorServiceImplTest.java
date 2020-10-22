@@ -104,4 +104,19 @@ class ArithmeticCalculatorServiceImplTest {
                 .isExactlyInstanceOf(InvalidTermException.class)
                 .hasMessageContaining(InvalidTermException.FIRST_TERM_IS_NULL);
     }
+
+    @Test
+    void shoudGetInvalidTermsExceptionWhenSecondTermIsNull() {
+        // given
+        final BigDecimal firstTerm = new BigDecimal(String.valueOf(Math.random()));
+        final BigDecimal secondTerm = null;
+
+        final ArithmeticCalculatorServiceImpl arithmeticCalculatorService = new ArithmeticCalculatorServiceImpl();
+
+        // when
+        // then
+        assertThatCode(() -> arithmeticCalculatorService.addition(firstTerm, secondTerm))
+                .isExactlyInstanceOf(InvalidTermException.class)
+                .hasMessageContaining(InvalidTermException.SECOND_TERM_IS_NULL);
+    }
 }
