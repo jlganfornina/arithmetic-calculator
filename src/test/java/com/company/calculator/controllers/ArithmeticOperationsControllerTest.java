@@ -83,4 +83,24 @@ class ArithmeticOperationsControllerTest {
         assertThat(result).isEqualTo(expectedResult.toString());
         verify(arithmeticCalculatorService, only()).executeOperation(firstTerm, secondTerm, arithmeticOperationType);
     }
+
+    @Test
+    void shouldGetBadRequestWhenFirstTermIsNotANumber() throws Exception {
+        // given
+        final String firstTerm = "NO_NUMBER";
+        final BigDecimal secondTerm = BigDecimal.valueOf(Math.random());
+        final ArithmeticOperationType arithmeticOperationType = ArithmeticOperationType.ADDITION;
+
+        // when
+        final ResultMatcher resultMatcher = status().isBadRequest();
+        final MockHttpServletRequestBuilder additionRequest = MockMvcRequestBuilders.get("/api/executeOperation")
+                .param("firstTerm", firstTerm)
+                .param("secondTerm", secondTerm.toString())
+                .param("arithmeticOperationType", arithmeticOperationType.toString())
+                .accept(MediaType.APPLICATION_JSON);
+
+        // then
+        mockMvc.perform(additionRequest)
+                .andExpect(resultMatcher);
+    }
 }
