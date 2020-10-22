@@ -1,10 +1,12 @@
 package com.company.calculator.services;
 
+import com.company.calculator.exceptions.InvalidTermException;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 class ArithmeticCalculatorServiceImplTest {
 
@@ -86,5 +88,20 @@ class ArithmeticCalculatorServiceImplTest {
 
         // then
         assertThat(result).isEqualTo(expectedResult);
+    }
+
+    @Test
+    void shoudGetInvalidTermsExceptionWhenFirstTermIsNull() {
+        // given
+        final BigDecimal firstTerm = null;
+        final BigDecimal secondTerm = new BigDecimal(String.valueOf(Math.random()));
+
+        final ArithmeticCalculatorServiceImpl arithmeticCalculatorService = new ArithmeticCalculatorServiceImpl();
+
+        // when
+        // then
+        assertThatCode(() -> arithmeticCalculatorService.addition(firstTerm, secondTerm))
+                .isExactlyInstanceOf(InvalidTermException.class)
+                .hasMessageContaining(InvalidTermException.FIRST_TERM_IS_NULL);
     }
 }
