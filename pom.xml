@@ -48,6 +48,15 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${springfox-swagger2.version}</version>
         </dependency>
+
+        <!-- Tracer Library -->
+        <dependency>
+            <groupId>io.corp</groupId>
+            <artifactId>calculator</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libraries/tracer-1.0.0.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
