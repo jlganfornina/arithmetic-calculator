@@ -55,4 +55,20 @@ class ArithmeticCalculatorServiceImplTest {
         // then
         assertThat(result).isEqualTo(expectedResult);
     }
+
+    @Test
+    void shouldAddTwoRandomNumbers() {
+        // given
+        final BigDecimal firstTerm = new BigDecimal(String.valueOf(Math.random()));
+        final BigDecimal secondTerm = new BigDecimal(String.valueOf(Math.random()));
+        final BigDecimal expectedResult = firstTerm.add(secondTerm);
+
+        final ArithmeticCalculatorServiceImpl arithmeticCalculatorService = new ArithmeticCalculatorServiceImpl();
+
+        // when
+        final BigDecimal result = arithmeticCalculatorService.addition(firstTerm, secondTerm);
+
+        // then
+        assertThat(result).isEqualTo(expectedResult);
+    }
 }
