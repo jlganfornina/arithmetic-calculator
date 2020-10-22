@@ -71,4 +71,20 @@ class ArithmeticCalculatorSubtractServiceImplTest {
         // then
         assertThat(result).isEqualTo(expectedResult);
     }
+
+    @Test
+    void shouldSubtractTwoNumbersWithRepeatedDecimalsAndGetCorrectResult() {
+        // given
+        final BigDecimal firstTerm = new BigDecimal("1.99999999999999999999999999999999");
+        final BigDecimal secondTerm = new BigDecimal("1.00000000000000000000000000000001");
+        final BigDecimal expectedResult = new BigDecimal("0.99999999999999999999999999999998");
+
+        final ArithmeticCalculatorSubtractService arithmeticCalculatorService = new ArithmeticCalculatorSubtractServiceImpl();
+
+        // when
+        final BigDecimal result = arithmeticCalculatorService.subtract(firstTerm, secondTerm);
+
+        // then
+        assertThat(result).isEqualTo(expectedResult);
+    }
 }
