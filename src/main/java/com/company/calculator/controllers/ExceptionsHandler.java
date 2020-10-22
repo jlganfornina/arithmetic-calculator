@@ -1,5 +1,6 @@
 package com.company.calculator.controllers;
 
+import com.company.calculator.exceptions.InvalidOperationTypeException;
 import com.company.calculator.exceptions.InvalidTermException;
 import io.corp.calculator.TracerImpl;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,12 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({InvalidTermException.class})
     public ResponseEntity<String> handleApiException(final InvalidTermException e) {
+        traceException(e);
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler({InvalidOperationTypeException.class})
+    public ResponseEntity<String> handleApiException(final InvalidOperationTypeException e) {
         traceException(e);
         return ResponseEntity.badRequest().body(e.getMessage());
     }

@@ -1,5 +1,6 @@
 package com.company.calculator.controllers;
 
+import com.company.calculator.exceptions.InvalidOperationTypeException;
 import com.company.calculator.exceptions.InvalidTermException;
 import io.corp.calculator.TracerImpl;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,23 @@ class ExceptionsHandlerTest {
 
         // when
         exceptionsHandler.handleApiException(invalidTermException);
+
+        // then
+
+        verify(tracer, only()).trace(expectedMessage);
+    }
+
+    @Test
+    void shouldCallTracerWhenInvalidArithmeticOperationException() {
+        // given
+        final TracerImpl tracer = spy(new TracerImpl());
+        final ExceptionsHandler exceptionsHandler = new ExceptionsHandler(tracer);
+
+        final InvalidOperationTypeException arithmeticOperationException = new InvalidOperationTypeException();
+        final String expectedMessage = MessageFormat.format(ExceptionsHandler.TRACER_MESSAGE, arithmeticOperationException.getMessage());
+
+        // when
+        exceptionsHandler.handleApiException(arithmeticOperationException);
 
         // then
 
