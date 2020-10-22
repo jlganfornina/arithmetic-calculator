@@ -71,4 +71,20 @@ class ArithmeticCalculatorServiceImplTest {
         // then
         assertThat(result).isEqualTo(expectedResult);
     }
+
+    @Test
+    void shouldAddTwoNumbersWithRepeatedDecimalsAndGetCorrectResult() {
+        // given
+        final BigDecimal firstTerm = new BigDecimal("1.99999999999999999999999999999999");
+        final BigDecimal secondTerm = new BigDecimal("1.00000000000000000000000000000001");
+        final BigDecimal expectedResult = new BigDecimal("3.00000000000000000000000000000000");
+
+        final ArithmeticCalculatorServiceImpl arithmeticCalculatorService = new ArithmeticCalculatorServiceImpl();
+
+        // when
+        final BigDecimal result = arithmeticCalculatorService.addition(firstTerm, secondTerm);
+
+        // then
+        assertThat(result).isEqualTo(expectedResult);
+    }
 }
