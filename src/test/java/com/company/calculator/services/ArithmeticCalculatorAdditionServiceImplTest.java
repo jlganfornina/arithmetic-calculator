@@ -91,6 +91,22 @@ class ArithmeticCalculatorAdditionServiceImplTest {
     }
 
     @Test
+    void shouldAddTwoNegativeNumbers() {
+        // given
+        final BigDecimal firstTerm = new BigDecimal("-11.234234");
+        final BigDecimal secondTerm = new BigDecimal("-23.3434345");
+        final BigDecimal expectedResult = new BigDecimal("-34.5776685");
+
+        final ArithmeticCalculatorAdditionService arithmeticCalculatorService = new ArithmeticCalculatorAdditionServiceImpl();
+
+        // when
+        final BigDecimal result = arithmeticCalculatorService.addition(firstTerm, secondTerm);
+
+        // then
+        assertThat(result).isEqualTo(expectedResult);
+    }
+
+    @Test
     void shoudGetInvalidTermsExceptionWhenFirstTermIsNull() {
         // given
         final BigDecimal firstTerm = null;
