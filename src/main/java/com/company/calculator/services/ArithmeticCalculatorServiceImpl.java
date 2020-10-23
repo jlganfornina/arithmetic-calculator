@@ -17,6 +17,9 @@ public class ArithmeticCalculatorServiceImpl implements ArithmeticCalculatorServ
         this.arithmeticCalculatorOperationFactory = arithmeticCalculatorOperationFactory;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BigDecimal executeOperation(final BigDecimal firstTerm,
                                        final BigDecimal secondTerm,
