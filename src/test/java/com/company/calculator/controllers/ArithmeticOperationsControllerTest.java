@@ -168,4 +168,23 @@ class ArithmeticOperationsControllerTest {
         mockMvc.perform(additionRequest)
                 .andExpect(resultMatcher);
     }
+
+    @Test
+    void shouldGetBadRequestOnInvalidArithmeticOperationType() throws Exception {
+        // given
+        final BigDecimal firstTerm = BigDecimal.valueOf(Math.random());
+        final BigDecimal secondTerm = BigDecimal.valueOf(Math.random());
+        final String invalidOperation = "INVALID_OPERATION";
+
+        // when
+        final ResultMatcher resultMatcher = status().isBadRequest();
+        final MockHttpServletRequestBuilder additionRequest = MockMvcRequestBuilders.get("/api/executeOperation")
+                .param("firstTerm", firstTerm.toString())
+                .param("secondTerm", secondTerm.toString())
+                .param("arithmeticOperationType", invalidOperation)
+                .accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(additionRequest)
+                .andExpect(resultMatcher);
+    }
 }
