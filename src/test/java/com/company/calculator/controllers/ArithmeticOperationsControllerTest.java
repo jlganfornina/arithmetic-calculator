@@ -148,4 +148,24 @@ class ArithmeticOperationsControllerTest {
         mockMvc.perform(additionRequest)
                 .andExpect(resultMatcher);
     }
+
+    @Test
+    void shouldBadRequestOnEmptySecondTerm() throws Exception {
+        // given
+        final BigDecimal firstTerm = BigDecimal.valueOf(Math.random());
+        final ArithmeticOperationType arithmeticOperationType = ArithmeticOperationType.ADDITION;
+        when(arithmeticCalculatorService.executeOperation(firstTerm, null, arithmeticOperationType))
+                .thenThrow(new InvalidTermException(InvalidTermException.SECOND_TERM_IS_NULL));
+
+        // when
+        final ResultMatcher resultMatcher = status().isBadRequest();
+        final MockHttpServletRequestBuilder additionRequest = MockMvcRequestBuilders.get("/api/executeOperation")
+                .param("firstTerm", firstTerm.toString())
+                .param("secondTerm", "")
+                .param("arithmeticOperationType", arithmeticOperationType.toString())
+                .accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(additionRequest)
+                .andExpect(resultMatcher);
+    }
 }
