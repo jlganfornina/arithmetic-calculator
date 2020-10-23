@@ -1,12 +1,16 @@
 package com.company.calculator.controllers;
 
+import com.company.calculator.configurations.TracerConfiguration;
+import com.company.calculator.exceptions.InvalidTermException;
 import com.company.calculator.services.ArithmeticCalculatorService;
 import com.company.calculator.services.operations.ArithmeticOperationType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -21,6 +25,8 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ArithmeticOperationsController.class)
+@AutoConfigureMockMvc
+@ContextConfiguration(classes = {ExceptionsHandler.class, TracerConfiguration.class, ArithmeticOperationsController.class})
 class ArithmeticOperationsControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -116,6 +122,26 @@ class ArithmeticOperationsControllerTest {
         final MockHttpServletRequestBuilder additionRequest = MockMvcRequestBuilders.get("/api/executeOperation")
                 .param("firstTerm", firstTerm.toString())
                 .param("secondTerm", secondTerm)
+                .param("arithmeticOperationType", arithmeticOperationType.toString())
+                .accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(additionRequest)
+                .andExpect(resultMatcher);
+    }
+
+    @Test
+    void shouldGetBadRequestOnEmptyFirstTerm() throws Exception {
+        // given
+        final BigDecimal secondTerm = BigDecimal.valueOf(Math.random());
+        final ArithmeticOperationType arithmeticOperationType = ArithmeticOperationType.ADDITION;
+        when(arithmeticCalculatorService.executeOperation(null, secondTerm, arithmeticOperationType))
+                .thenThrow(new InvalidTermException(InvalidTermException.FIRST_TERM_IS_NULL));
+
+        // when
+        final ResultMatcher resultMatcher = status().isBadRequest();
+        final MockHttpServletRequestBuilder additionRequest = MockMvcRequestBuilders.get("/api/executeOperation")
+                .param("firstTerm", "")
+                .param("secondTerm", secondTerm.toString())
                 .param("arithmeticOperationType", arithmeticOperationType.toString())
                 .accept(MediaType.APPLICATION_JSON);
 
