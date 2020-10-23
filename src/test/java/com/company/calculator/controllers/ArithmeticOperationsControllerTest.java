@@ -1,6 +1,7 @@
 package com.company.calculator.controllers;
 
 import com.company.calculator.configurations.TracerConfiguration;
+import com.company.calculator.exceptions.InvalidOperationTypeException;
 import com.company.calculator.exceptions.InvalidTermException;
 import com.company.calculator.services.ArithmeticCalculatorService;
 import com.company.calculator.services.operations.ArithmeticOperationType;
@@ -150,7 +151,7 @@ class ArithmeticOperationsControllerTest {
     }
 
     @Test
-    void shouldBadRequestOnEmptySecondTerm() throws Exception {
+    void shouldGetBadRequestOnEmptySecondTerm() throws Exception {
         // given
         final BigDecimal firstTerm = BigDecimal.valueOf(Math.random());
         final ArithmeticOperationType arithmeticOperationType = ArithmeticOperationType.ADDITION;
@@ -182,6 +183,26 @@ class ArithmeticOperationsControllerTest {
                 .param("firstTerm", firstTerm.toString())
                 .param("secondTerm", secondTerm.toString())
                 .param("arithmeticOperationType", invalidOperation)
+                .accept(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(additionRequest)
+                .andExpect(resultMatcher);
+    }
+
+    @Test
+    void shouldGetBadRequestOnEmptyArithmeticOperationType() throws Exception {
+        // given
+        final BigDecimal firstTerm = BigDecimal.valueOf(Math.random());
+        final BigDecimal secondTerm = BigDecimal.valueOf(Math.random());
+        when(arithmeticCalculatorService.executeOperation(firstTerm, secondTerm, null))
+                .thenThrow(new InvalidOperationTypeException());
+
+        // when
+        final ResultMatcher resultMatcher = status().isBadRequest();
+        final MockHttpServletRequestBuilder additionRequest = MockMvcRequestBuilders.get("/api/executeOperation")
+                .param("firstTerm", firstTerm.toString())
+                .param("secondTerm", secondTerm.toString())
+                .param("arithmeticOperationType", "")
                 .accept(MediaType.APPLICATION_JSON);
 
         mockMvc.perform(additionRequest)
