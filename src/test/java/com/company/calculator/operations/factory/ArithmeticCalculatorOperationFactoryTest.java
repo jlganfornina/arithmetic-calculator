@@ -1,6 +1,10 @@
-package com.company.calculator.services.operations;
+package com.company.calculator.operations.factory;
 
 import com.company.calculator.exceptions.InvalidOperationTypeException;
+import com.company.calculator.operations.strategy.ArithmeticCalculatorOperation;
+import com.company.calculator.operations.strategy.ArithmeticOperationType;
+import com.company.calculator.operations.strategy.impl.ArithmeticCalculatorAdditionOperation;
+import com.company.calculator.operations.strategy.impl.ArithmeticCalculatorSubtractOperation;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

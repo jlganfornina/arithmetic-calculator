@@ -1,6 +1,6 @@
 package com.company.calculator.services;
 
-import com.company.calculator.services.operations.ArithmeticOperationType;
+import com.company.calculator.operations.strategy.ArithmeticOperationType;
 
 import java.math.BigDecimal;
 

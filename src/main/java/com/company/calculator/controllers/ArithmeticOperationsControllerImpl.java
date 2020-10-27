@@ -1,7 +1,7 @@
 package com.company.calculator.controllers;
 
+import com.company.calculator.operations.strategy.ArithmeticOperationType;
 import com.company.calculator.services.ArithmeticCalculatorService;
-import com.company.calculator.services.operations.ArithmeticOperationType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

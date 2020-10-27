@@ -1,5 +1,6 @@
-package com.company.calculator.services.operations;
+package com.company.calculator.operations.strategy.impl;
 
+import com.company.calculator.operations.strategy.ArithmeticCalculatorOperation;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

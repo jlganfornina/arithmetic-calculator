@@ -4,7 +4,7 @@ import com.company.calculator.configurations.TracerConfiguration;
 import com.company.calculator.exceptions.InvalidOperationTypeException;
 import com.company.calculator.exceptions.InvalidTermException;
 import com.company.calculator.services.ArithmeticCalculatorService;
-import com.company.calculator.services.operations.ArithmeticOperationType;
+import com.company.calculator.operations.strategy.ArithmeticOperationType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

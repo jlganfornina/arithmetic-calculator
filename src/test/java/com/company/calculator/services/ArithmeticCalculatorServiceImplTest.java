@@ -1,9 +1,9 @@
 package com.company.calculator.services;
 
 import com.company.calculator.exceptions.InvalidTermException;
-import com.company.calculator.services.operations.ArithmeticCalculatorOperation;
-import com.company.calculator.services.operations.ArithmeticCalculatorOperationFactory;
-import com.company.calculator.services.operations.ArithmeticOperationType;
+import com.company.calculator.operations.factory.ArithmeticCalculatorOperationFactory;
+import com.company.calculator.operations.strategy.ArithmeticCalculatorOperation;
+import com.company.calculator.operations.strategy.ArithmeticOperationType;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
