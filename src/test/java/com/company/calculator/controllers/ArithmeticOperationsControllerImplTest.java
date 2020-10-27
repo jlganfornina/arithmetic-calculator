@@ -25,10 +25,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(ArithmeticOperationsController.class)
+@WebMvcTest(ArithmeticOperationsControllerImpl.class)
 @AutoConfigureMockMvc
-@ContextConfiguration(classes = {ExceptionsHandler.class, TracerConfiguration.class, ArithmeticOperationsController.class})
-class ArithmeticOperationsControllerTest {
+@ContextConfiguration(classes = {ExceptionsHandler.class, TracerConfiguration.class, ArithmeticOperationsControllerImpl.class})
+class ArithmeticOperationsControllerImplTest {
     @Autowired
     private MockMvc mockMvc;
 
