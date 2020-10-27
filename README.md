@@ -36,6 +36,11 @@ Por último se han implementado los tests de la API y el controlador que expone 
 
 En la librería de traceo proporcionada se ha encontrado un error. La clase TraceImpl no implementa la interfaz TraceAPI, lo que me ha obligado a usar directamente la implementación.
 
+Antes de ejecutar el microservicio, es necesario instalar la librería en el repositorio local de maven. Para ello podemos usar el siguiente comando:
+
+    mvn install:install-file -Dfile=./libraries/tracer-1.0.0.jar
+    
+    mvnw install:install-file -Dfile=./libraries/tracer-1.0.0.jar
 
 ## Stack
 
@@ -58,22 +63,38 @@ http://localhost:8080/swagger-ui.html
 
 
 ## Instrucciones
+
+Para facilitar la ejecución del proyecto se ha añadido maven wrapper. Este wrapper permite el uso de maven sin tenerlo instalado en el sistema. Además, su uso nos permite asegurar que todos los integrantes del equipo están usando la misma versión de maven.
+En cualquier caso, el uso de maven wrapper no es obligatorio y podemos usar los comandos de maven.
+
+A continuación se describen los comandos necesarios con maven y maven wrapper
     
 Ejecutar los tests:
+    
+    mvn clean test 
     
     mvnw clean test
     
 
-El resultado de la cobertura de tests se puede ver en: 
+Se ha añadido el plugin de jacoco que generá el resultado de la cobertura de tests. Se ha hecho que se ejecute en la fase de tests para mayor comodidad. El resultado se puede ver en: 
 
-    /target/site/jacoco 
+    ./target/site/jacoco 
 
 
 Ejecutar el microservicio:
 
+    mvn clean spring-boot:run
+    
     mvnw clean spring-boot:run
     
 
 Crear el jar:
 
+    mvn clean package
+    
     mvnw clean package
+    
+ 
+Ejecutar el microservicio desde el jar
+
+    java -jar ./target/calculator-0.0.1-SNAPSHOT.jar
